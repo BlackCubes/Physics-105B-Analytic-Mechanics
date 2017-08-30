@@ -1,0 +1,297 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8998,        289]
+NotebookOptionsPosition[      8683,        273]
+NotebookOutlinePosition[      9025,        288]
+CellTagsIndexPosition[      8982,        285]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NMAX", " ", "=", " ", "10"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"debug", " ", "=", " ", "False"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"showcalc", " ", "=", " ", "False"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"identicalmasses", " ", "=", " ", "True"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"identicalsprings", " ", "=", " ", "True"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    SubscriptBox["x", "0"], "[", "t_", "]"}], " ", "=", " ", "0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     SubscriptBox["x", 
+      RowBox[{"NMAX", "+", "1"}]], "[", "t_", "]"}], " ", "=", " ", "0"}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T", " ", "=", " ", 
+   RowBox[{
+    FractionBox["1", "2"], 
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"i", "=", "1"}], "NMAX"], 
+     RowBox[{
+      SubscriptBox["m", "i"], 
+      SuperscriptBox[
+       RowBox[{
+        RowBox[{
+         SubscriptBox["x", "i"], "'"}], "[", "t", "]"}], "2"]}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"V", " ", "=", " ", 
+   RowBox[{
+    FractionBox["1", "2"], 
+    RowBox[{
+     SubsuperscriptBox["\[Sum]", 
+      RowBox[{"i", "=", "1"}], 
+      RowBox[{"NMAX", "+", "1"}]], 
+     RowBox[{
+      SubscriptBox["k", "i"], 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          SubscriptBox["x", "i"], "[", "t", "]"}], "-", 
+         RowBox[{
+          SubscriptBox["x", 
+           RowBox[{"i", "-", "1"}]], "[", "t", "]"}]}], ")"}], "2"]}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"lag", " ", "=", " ", 
+    RowBox[{"T", "-", "V"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mclist", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     SubscriptBox["m", "i"], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "NMAX"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"kclist", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     SubscriptBox["k", "i"], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"NMAX", "+", "1"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"dclist", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["M", "0"], ",", 
+     SubscriptBox["K", "0"], ",", "\[Omega]"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"clist", " ", "=", " ", 
+    RowBox[{"Join", "[", 
+     RowBox[{"mclist", ",", "kclist", ",", "dclist"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetAttributes", "[", 
+   RowBox[{"clist", ",", "Constant"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"$Assumptions", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Element", "[", 
+       RowBox[{"clist", ",", "Reals"}], "]"}], " ", "&&", " ", 
+      RowBox[{
+       SubscriptBox["M", "0"], " ", ">", " ", "0"}], " ", "&&", " ", 
+      RowBox[{
+       SubscriptBox["K", "0"], " ", ">", " ", "0"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"EL", "[", "q_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{"lag", ",", "q"}], "]"}], "-", 
+     RowBox[{"Dt", "[", 
+      RowBox[{
+       RowBox[{"D", "[", 
+        RowBox[{"lag", ",", 
+         RowBox[{"D", "[", 
+          RowBox[{"q", ",", "t"}], "]"}]}], "]"}], ",", "t"}], "]"}]}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"eqnarray", " ", "=", " ", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"EL", "[", 
+       RowBox[{
+        SubscriptBox["x", "i"], "[", "t", "]"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "NMAX"}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     SubscriptBox["x", "i_"], "[", "t_", "]"}], ":=", 
+    RowBox[{
+     SubscriptBox["A", "i"], 
+     SuperscriptBox["E", "I\[Omega]t"]}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"eqnarray", "=", 
+    RowBox[{
+     RowBox[{"eqnarray", "/", 
+      SuperscriptBox["E", "I\[Omega]t"]}], "//", "Simplify"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"matrix", " ", "=", " ", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"D", "[", 
+        RowBox[{
+         RowBox[{"eqnarray", "[", "i", "]"}], ",", 
+         SubscriptBox["A", "j"]}], "]"}], "//", "Simplify"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "NMAX"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "1", ",", "NMAX"}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{"identicalmasses", ",", 
+    RowBox[{"Do", "[", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["m", "i"], "=", 
+       SubscriptBox["M", "0"]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "NMAX"}], "}"}]}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{"identicalsprings", ",", 
+     RowBox[{"Do", "[", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["k", "i"], "=", 
+        SubscriptBox["K", "0"]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", 
+         RowBox[{"NMAX", "+", "1"}]}], "}"}]}], "]"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"showcalc", " ", "&&", " ", 
+      RowBox[{"(", 
+       RowBox[{"identicalmasses", " ", "||", " ", "identicalsprings"}], 
+       ")"}]}], ",", 
+     RowBox[{"Print", "[", 
+      RowBox[{
+      "\"\<The matrix that describes the acutal system looks like:\>\"", ",", 
+       RowBox[{"MatrixForm", "[", "matrix", "]"}]}], "]"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"soln", "=", 
+   RowBox[{"Solve", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Det", "[", 
+       RowBox[{"matrix", "/.", 
+        RowBox[{
+         SuperscriptBox["\[Omega]", "2"], "\[Rule]", "\[Alpha]"}]}], "]"}], 
+      "\[Equal]", "0"}], ",", "\[Alpha]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[CapitalOmega]", "=", 
+    RowBox[{
+     SqrtBox[
+      RowBox[{"\[Alpha]", "/.", "soln"}]], "//", "Simplify"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"If", "[", 
+  RowBox[{"showcalc", ",", 
+   RowBox[{"Print", "[", 
+    RowBox[{
+    "\"\<The normal mode frequences of the system looks like:\>\"", ",", 
+     "\[CapitalOmega]"}], "]"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6729382101824503`*^9, 3.6729382724343863`*^9}, {
+   3.6729383204093623`*^9, 3.6729384009293013`*^9}, {3.6729384649971066`*^9, 
+   3.672939102781287*^9}, {3.672939166609812*^9, 3.6729394174622097`*^9}, 
+   3.672940067318808*^9, {3.672940715155879*^9, 3.672940799089818*^9}, {
+   3.6729409561626167`*^9, 3.672941146243285*^9}, {3.6729411870533967`*^9, 
+   3.672941341302618*^9}, {3.6729584450584908`*^9, 3.6729584451757545`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Remove", "::", "rmnsm"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"There are no symbols matching \
+\\\"\[NoBreak]\\!\\(\\*RowBox[{\\\"\\\\\\\"Global`*\\\\\\\"\\\"}]\\)\[NoBreak]\
+\\\". \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/Remove/rmnsm\\\", \
+ButtonNote -> \\\"Remove::rmnsm\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.672958493596386*^9}]
+}, Open  ]]
+},
+WindowSize->{957, 633},
+WindowMargins->{{Automatic, 61}, {Automatic, 7}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 7589, 236, 933, "Input"],
+Cell[8172, 260, 495, 10, 21, "Message"]
+}, Open  ]]
+}
+]
+*)
+
