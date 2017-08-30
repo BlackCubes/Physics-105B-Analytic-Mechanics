@@ -1,4 +1,4 @@
-/* MATHEMATICA HW 1 */
+# MATHEMATICA HW 1
 
 What's up everyone!
 
